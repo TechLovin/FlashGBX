@@ -476,8 +476,8 @@ class LK_Device(ABC):
 				hp -= 1
 			if hp > 0:
 				# dprint(f"Recovery: {self.DEVICE.in_waiting} byte(s) in queue! (HP: {hp}/50)")
-				buffer += self.DEVICE.read(count)
-		
+				buffer += self.DEVICE.read(count - len(buffer))
+
 		if len(buffer) != count:
 			tb_stack = traceback.extract_stack()
 			stack = tb_stack[len(tb_stack)-2] # caller only
